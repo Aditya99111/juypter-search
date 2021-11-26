@@ -1,0 +1,78 @@
+
+.home{
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap:1.5rem;
+    padding-top: 10rem;
+    background:var(--bg);
+    position: relative;
+}
+
+.home .content{
+    flex:1 1 45rem;
+}
+
+
+.home .image{
+    flex:1 1 45rem;
+}
+
+.home .image img{
+    width: 100%;
+}
+
+.home .content h3{
+    font-size: 3.5rem;
+    color:var(--black);
+    line-height: 1;
+}
+
+.home .content p{
+    font-size: 1.5rem;
+    color:var(--light-color);
+    line-height: 1.8;
+    padding:1rem 0;
+}
+
+
+.home form .box{
+    margin:.7rem 0;
+    padding: 1rem;
+    font-size: 1.6rem;
+    color:var(--black);
+    border-radius: .5rem;
+    border:var(--border);
+    background: #f7f7f7;
+    text-transform: none;
+    width: 80%;
+}
+
+.home form .box:focus{
+    box-shadow: var(--box-shadow);
+}
+.home .cloud{
+    position: absolute;
+    bottom: 0; right: 0; left: 0;
+    height: 18rem;
+    background-size: 250rem 18rem;
+    background:url(./cloud.png) repeat-x;
+    animation: cloud 10s linear infinite;
+}
+
+@keyframes cloud{
+    0%{
+        background-position-x: 0rem;
+    }
+    100%{
+        background-position-x: -250rem;
+    }
+}
+
+.home .cloud-1{
+    opacity: .5;
+    height:20rem;
+    background-size: 250rem 20rem;
+    animation-direction: reverse;
+    animation-duration: 15s;
+}

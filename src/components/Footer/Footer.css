@@ -1,0 +1,16 @@
+.footer{
+    margin-top: 1rem;
+    background: var(--bg);
+    padding-bottom: 1rem;
+}
+.footer .credit{
+    color: var(--black);
+    text-align: center;
+    padding:1rem;
+    padding-top: 2rem;
+    font-size: 2rem;
+}
+
+.footer .credit span{
+    color:var(--main-color);
+}

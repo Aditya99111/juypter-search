@@ -1,0 +1,85 @@
+
+.contact .icons-container{
+    display:grid;
+    grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
+    gap:1.5rem;
+}
+
+.contact .icons-container .icons{
+    padding: 2.5rem;
+    text-align: center;
+    border: var(--border);
+    border-radius: .5rem;
+    box-shadow: var(--box-shadow);
+}
+
+.contact .icons-container .icons i{
+    height: 6rem;
+    width: 6rem;
+    line-height: 6rem;
+    font-size: 2.5rem;
+    color:var(--main-color);
+    background: var(--bg);
+    border-radius: 50%;
+}
+
+.contact .icons-container .icons h3{
+    color:var(--black);
+    padding: 1rem 0;
+    font-size: 2.5rem;
+}
+
+.contact .icons-container .icons p{
+    color:var(--light-color);
+    line-height: 1.8;
+    font-size: 1.5rem;
+}
+
+.contact .row{
+    margin-top: 2rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+}
+
+.contact .row .map{
+    flex:1 1 45rem;
+    width: 100%;
+    padding:2rem;
+    border:var(--border);
+    box-shadow: var(--box-shadow);
+    border-radius: .5rem;
+}
+
+.contact .row form{
+    flex:1 1 45rem;
+    padding:2rem;
+    border:var(--border);
+    box-shadow: var(--box-shadow);
+    border-radius: .5rem;
+}
+
+.contact .row form .box{
+    margin:.7rem 0;
+    padding: 1rem;
+    font-size: 1.6rem;
+    color:var(--black);
+    border-radius: .5rem;
+    border:var(--border);
+    background: #f7f7f7;
+    text-transform: none;
+    width: 100%;
+}
+
+.contact .row form .box:focus{
+    background:var(--bg);
+}
+
+.contact .row form textarea{
+    height: 20rem;
+    resize: none;
+}
+
+.contact .row form .btn:hover{
+    background: var(--black);
+}
