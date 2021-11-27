@@ -4,6 +4,12 @@ import JSONDATA from "../MOCK_DATA.json"
 import { useState } from 'react'
 const Search = () => {
     const [searchTerm, setSearchterm] = useState('')
+
+    const [visible ,setVisible] = useState(10)
+
+    const showMore =()=>{
+        setVisible((prevValue)=> prevValue + 10)
+    }
     return (
         <section className="searchpage">
 
@@ -62,8 +68,6 @@ const Search = () => {
 
                 <section class="products" id="products">
                     <h1 class="heading"> latest <span>products</span> </h1>
-            
-
                     <div class="box-container" >
                         {JSONDATA.filter((val) => {
                             if (searchTerm === "") {
@@ -72,7 +76,7 @@ const Search = () => {
                             else if (val.first_name.toLowerCase().includes(searchTerm.toLowerCase())) {
                                 return val
                             }
-                        }).map((val, key) => {
+                        }).slice(0,visible).map((val, key) => {
                             return (
                                     <div class="box" key={key}>
                                         <span class="discount">-10%</span>
@@ -90,8 +94,8 @@ const Search = () => {
                                     </div>
                             )
                         })}
-       
                     </div>
+                            <button className="btn" onClick={showMore}>load more</button>
                 </section>
             </div>
 
