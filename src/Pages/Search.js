@@ -3,38 +3,97 @@ import "./Search.css"
 import JSONDATA from "../MOCK_DATA.json"
 import { useState } from 'react'
 const Search = () => {
-
-    const [items,setItems] = useState(JSONDATA)
-
-    const [searchTerm,setSearchterm] = useState('')
-
-    const filterItem = (caregItem)=>{
-        const updatedItems = JSONDATA.filter((curElem)=>{
-            return curElem.gender === caregItem
-        })
-        setItems(updatedItems)
-    }
-
+    const [searchTerm, setSearchterm] = useState('')
     return (
-        <section className="search">
-            <div className="searchbar">
-                <input type="text" placeholder="search here" onChange={event =>{setSearchterm(event.target.value)}}/>
+        <section className="searchpage">
+
+            <div className="filters">
+            <h1 class="heading"> <span>Filters</span> </h1>
+
+                    <div className="pricefilter">
+                    <h1>Price</h1>
+                        <input type="range" name="range" id="price" />
+                    </div>
+                    <div className="rivews">
+                    <h1>rivews</h1>
+                    <div className="five">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    </div>
+                    <div className="four">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    </div>
+                    <div className="three">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    </div>
+                    </div>
+                    <div className="order">
+                    <h1>orders</h1>
+                        <button className="btn"> &lt; 1000</button>
+                        <button className="btn"> &lt; 100</button>
+                        <button className="btn"> &lt; 50</button>
+                        <button className="btn"> &lt; 10</button>
+                    </div>
+                    <div className="rank">
+                    <h1>Rank</h1>
+
+                    </div>
+
             </div>
-            {JSONDATA.filter((val)=>{
-                if(searchTerm === "") {
-                    return val
-                }
-                else if (val.first_name.toLowerCase().includes(searchTerm.toLowerCase())){
-                    return val
-                }
-            }).map((val,key)=>{
-                return <div key={key}>{val.first_name}</div>
-            })}
 
 
 
+            <div className="maincontent">
 
-            <button className="btn" onClick={()=>filterItem('Male')}> hello</button>
+                <div className="searchbar">
+
+                    <form action="">
+                        <input className="box" type="text" placeholder="Search here" onChange={event => { setSearchterm(event.target.value) }} />
+                    </form>
+                </div>
+
+                <section class="products" id="products">
+                    <h1 class="heading"> latest <span>products</span> </h1>
+            
+
+                    <div class="box-container" >
+                        {JSONDATA.filter((val) => {
+                            if (searchTerm === "") {
+                                return val
+                            }
+                            else if (val.first_name.toLowerCase().includes(searchTerm.toLowerCase())) {
+                                return val
+                            }
+                        }).map((val, key) => {
+                            return (
+                                    <div class="box" key={key}>
+                                        <span class="discount">-10%</span>
+                                        <div class="image">
+                                            <img src="images/img-1.jpg" alt="" />
+                                            <div class="icons">
+                                                <a href="#popup1" class="cart-btn">view Details</a>
+                                            </div>
+                                        </div>
+                                        <div class="content">
+                                            <h3> {val.first_name} </h3>
+                                            <p>{val.description}</p>
+                                            <div class="price"> $12.99 <span>$15.99</span> </div>
+                                        </div>
+                                    </div>
+                            )
+                        })}
+       
+                    </div>
+                </section>
+            </div>
 
 
         </section>
