@@ -2,72 +2,37 @@ import React from 'react'
 import "./Search.css"
 import JSONDATA from "../MOCK_DATA.json"
 import { useState } from 'react'
+import { Line } from 'react-chartjs-2';
+
+
 const Search = () => {
     const [searchTerm, setSearchterm] = useState('')
 
-    const [visible ,setVisible] = useState(10)
+    const [visible, setVisible] = useState(10)
 
-    const showMore =()=>{
-        setVisible((prevValue)=> prevValue + 10)
+    const showMore = () => {
+        setVisible((prevValue) => prevValue + 10)
     }
     return (
         <section className="searchpage">
 
-            <div className="filters">
-            <h1 class="heading"> <span>Filters</span> </h1>
-
-                    <div className="pricefilter">
-                    <h1>Price</h1>
-                        <input type="range" name="range" id="price" />
-                    </div>
-                    <div className="rivews">
-                    <h1>rivews</h1>
-                    <div className="five">
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    </div>
-                    <div className="four">
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    </div>
-                    <div className="three">
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    </div>
-                    </div>
-                    <div className="order">
-                    <h1>orders</h1>
-                        <button className="btn"> &lt; 1000</button>
-                        <button className="btn"> &lt; 100</button>
-                        <button className="btn"> &lt; 50</button>
-                        <button className="btn"> &lt; 10</button>
-                    </div>
-                    <div className="rank">
-                    <h1>Rank</h1>
-
-                    </div>
-
-            </div>
-
-
-
-            <div className="maincontent">
-
+                    <div className="maincontent">
                 <div className="searchbar">
-
                     <form action="">
                         <input className="box" type="text" placeholder="Search here" onChange={event => { setSearchterm(event.target.value) }} />
+                        <select name="categories" id="categories">
+                            <option value="electronices">electronices</option>
+                            <option value="toys">toys</option>
+                            <option value="home">home</option>
+                        </select>
                     </form>
                 </div>
-
                 <section class="products" id="products">
                     <h1 class="heading"> latest <span>products</span> </h1>
+                    <p className="pricefilter"> sort by: <select name="price" id="price">
+                            <option value="low-to-high">low to high</option>
+                            <option value="high-to-low">high to low</option>
+                        </select> </p>
                     <div class="box-container" >
                         {JSONDATA.filter((val) => {
                             if (searchTerm === "") {
@@ -76,14 +41,15 @@ const Search = () => {
                             else if (val.first_name.toLowerCase().includes(searchTerm.toLowerCase())) {
                                 return val
                             }
-                        }).slice(0,visible).map((val, key) => {
+                        }).slice(0, visible).map((val, key) => {
                             return (
+                                <>
                                     <div class="box" key={key}>
                                         <span class="discount">-10%</span>
                                         <div class="image">
                                             <img src="images/img-1.jpg" alt="" />
                                             <div class="icons">
-                                                <a href="#popup1" class="cart-btn">view Details</a>
+                                                <a href="#popup2" class="cart-btn">view Details</a>
                                             </div>
                                         </div>
                                         <div class="content">
@@ -92,10 +58,87 @@ const Search = () => {
                                             <div class="price"> $12.99 <span>$15.99</span> </div>
                                         </div>
                                     </div>
+
+                                    <div id="popup2" class="overlay light">
+                                        <a class="cancel" href="#"></a>
+                                        <div class="popup">
+                                            <div class="content1">
+                                                <h1 class="heading">{val.first_name}</h1>
+                                                <div className="right">
+                                                    <div className="popupicons">
+                                                        <div className="popupprice">
+                                                            <i class="fas fa-dollar-sign"></i>
+                                                            <br />
+                                                            100$
+                                                        </div>
+                                                        <div className="popuporder">
+                                                            <i class="fas fa-shopping-cart"></i>
+                                                            <br />
+                                                            100
+                                                        </div>
+                                                        <div className="popuprank">
+                                                            <i class="fas fa-trophy"></i>
+                                                            <br />
+                                                            10
+                                                        </div>
+
+                                                    </div>
+                                                    <div className="graph">
+
+                                                        <Line
+                                                          height={400} 
+                                                          width={400}
+                                                            data={{
+                                                                labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+                                                                datasets: [
+                                                                    {
+                                                                        label: "label",
+                                                                        data: [22, 33, 30, 44, 22, 33],
+                                                                        backgroundColor: [
+                                                                            'rgba(255, 99, 132, 0.2)',
+                                                                            'rgba(54, 162, 235, 0.2)',
+                                                                            'rgba(255, 206, 86, 0.2)',
+                                                                            'rgba(75, 192, 192, 0.2)',
+                                                                            'rgba(153, 102, 255, 0.2)',
+                                                                            'rgba(255, 159, 64, 0.2)'
+                                                                        ],
+                                                                        borderColor: [
+                                                                            'rgba(255, 99, 132, 1)',
+                                                                            'rgba(54, 162, 235, 1)',
+                                                                            'rgba(255, 206, 86, 1)',
+                                                                            'rgba(75, 192, 192, 1)',
+                                                                            'rgba(153, 102, 255, 1)',
+                                                                            'rgba(255, 159, 64, 1)'
+                                                                        ],
+                                                                        borderWidth: 1
+                                                                    }
+                                                                ]
+                                                            }}
+                                                            options={{
+                                                                maintainAspectRatio: false
+                                                            }}
+
+                                                        />
+                                                    </div>
+
+
+                                                </div>
+                                                <div className="left">
+                                                    <div className="popupimage">
+                                                        <img src="images/img-1.jpg" alt="" />
+                                                    </div>
+                                                    <button className="btn">view on store</button>
+
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </>
                             )
                         })}
                     </div>
-                            <button className="btn" onClick={showMore}>load more</button>
+                    <button className="btn" onClick={showMore}>load more</button>
                 </section>
             </div>
 
