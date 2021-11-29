@@ -2,8 +2,28 @@ import React from 'react'
 import "./Search.css"
 import JSONDATA from "../MOCK_DATA.json"
 import { useState } from 'react'
-import { Line } from 'react-chartjs-2';
-
+import {
+    Chart as ChartJS,
+    CategoryScale,
+    LinearScale,
+    PointElement,
+    LineElement,
+    Title,
+    Tooltip,
+    Legend,
+  } from 'chart.js'
+import { Line } from 'react-chartjs-2'
+import { getAllByDisplayValue } from '@testing-library/react'
+  
+  ChartJS.register(
+    CategoryScale,
+    LinearScale,
+    PointElement,
+    LineElement,
+    Title,
+    Tooltip,
+    Legend
+  )
 
 const Search = () => {
     const [searchTerm, setSearchterm] = useState('')
@@ -13,6 +33,7 @@ const Search = () => {
     const showMore = () => {
         setVisible((prevValue) => prevValue + 10)
     }
+    
     return (
         <section className="searchpage">
 
@@ -30,6 +51,7 @@ const Search = () => {
                 <section class="products" id="products">
                     <h1 class="heading"> latest <span>products</span> </h1>
                     <p className="pricefilter"> sort by: <select name="price" id="price">
+                            <option value="price">price</option>
                             <option value="low-to-high">low to high</option>
                             <option value="high-to-low">high to low</option>
                         </select> </p>
@@ -59,11 +81,18 @@ const Search = () => {
                                         </div>
                                     </div>
 
-                                    <div id="popup2" class="overlay light">
+                                   
+                                </>
+                            )
+                        })}
+
+                        {JSONDATA.map((value,key)=>{
+                            return(
+                                <div id="popup2" class="overlay light" key={key}>
                                         <a class="cancel" href="#"></a>
                                         <div class="popup">
                                             <div class="content1">
-                                                <h1 class="heading">{val.first_name}</h1>
+                                                <h1 class="heading">{value.first_name}</h1>
                                                 <div className="right">
                                                     <div className="popupicons">
                                                         <div className="popupprice">
@@ -89,6 +118,7 @@ const Search = () => {
                                                           height={400} 
                                                           width={400}
                                                             data={{
+                                                                type: 'category',
                                                                 labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
                                                                 datasets: [
                                                                     {
@@ -134,8 +164,8 @@ const Search = () => {
                                             </div>
                                         </div>
                                     </div>
-                                </>
                             )
+
                         })}
                     </div>
                     <button className="btn" onClick={showMore}>load more</button>
