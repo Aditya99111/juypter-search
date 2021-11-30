@@ -4,18 +4,25 @@ import Search from './Pages/Search';
 import Footer from "./components/Footer/Footer"
 import Header from "./components/Header/Header"
 
-
+import { BrowserRouter as Router,Routes, Route} from "react-router-dom";
+import {useState} from "react"
 
 function App() {
   return (
-    <div>
-<Header />
+    <Router>
+      <div>
+        <Header />
 
-{/* <Landing/> */}
-<Search/>
-<Footer />
+        <Routes>
+        <Route path="/search" element={<Search />} />
+        <Route path="/" element={<Landing />} />
 
-    </div>
+        </Routes>
+
+        <Footer />
+
+      </div>
+    </Router>
   );
 }
 

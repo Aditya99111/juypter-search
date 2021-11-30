@@ -13,7 +13,6 @@ import {
     Legend,
   } from 'chart.js'
 import { Line } from 'react-chartjs-2'
-import { getAllByDisplayValue } from '@testing-library/react'
   
   ChartJS.register(
     CategoryScale,
@@ -25,7 +24,11 @@ import { getAllByDisplayValue } from '@testing-library/react'
     Legend
   )
 
+
+
+
 const Search = () => {
+    
     const [searchTerm, setSearchterm] = useState('')
 
     const [visible, setVisible] = useState(10)
@@ -63,6 +66,10 @@ const Search = () => {
                             else if (val.first_name.toLowerCase().includes(searchTerm.toLowerCase())) {
                                 return val
                             }
+                            else if (val.description.toLowerCase().includes(searchTerm.toLowerCase())) {
+                                return val
+                            }
+                            
                         }).slice(0, visible).map((val, key) => {
                             return (
                                 <>
@@ -77,7 +84,7 @@ const Search = () => {
                                         <div class="content">
                                             <h3> {val.first_name} </h3>
                                             <p>{val.description}</p>
-                                            <div class="price"> $12.99 <span>$15.99</span> </div>
+                                            <div class="price"> ${val.price}.99 <span>$15.99</span> </div>
                                         </div>
                                     </div>
 

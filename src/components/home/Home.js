@@ -1,7 +1,15 @@
-import React from 'react'
+import React,{useState} from 'react'
 import "./Home.css"
 import rocket from "./rocket.svg" 
+import {Link} from "react-router-dom"
+
 const Home = () => {
+    const [input, setInput] = useState(''); 
+    const search =()=>{
+        if (input === "") {
+            alert("please fill in the textarea")
+        } 
+    }
     return (
 
         <section className="home" id="home">
@@ -10,9 +18,9 @@ const Home = () => {
                 <h3>Take your store to the moon!</h3>
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum Lorem </p>
                 <form action="">
-                    <input type="text" placeholder="Search.." className="box search" />
+                    <input value={input} onInput={e => setInput(e.target.value)} type="text" placeholder="Search.." className="box search" />
                 </form>
-                <a href="/search.html"><button className="btn">Search!</button></a>
+                <Link to="/search"><button className="btn" onClick={search}>Search!</button></Link>
 
             </div>
 
