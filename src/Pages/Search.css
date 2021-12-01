@@ -21,9 +21,6 @@
 }
 
 .searchbar{
-    /* display: flex;
-    align-items: center;
-    justify-content: center; */
     padding-left:34rem;
 
 }
@@ -48,10 +45,9 @@
 }
 
 .pricefilter{
-    padding-left: 98rem;
+    padding-left: 90rem;
     font-size: 1.5rem;
     padding-bottom:1rem;
-
 }
 
 #price{
@@ -283,4 +279,104 @@
 }
 .popupimage img{
     border:1px solid;
+}
+.searchbar form{
+    display: block;
+}
+
+@media (max-width:1206px){
+
+    .pricefilter{
+        padding-left: 90rem;
+    }
+
+}
+@media (max-width:1196px){
+
+    .pricefilter{
+        padding-left: 83rem;
+    }
+
+}
+@media (max-width:1152px){
+
+    .pricefilter{
+        padding-left: 73rem;
+    }
+
+}
+@media (max-width:1083px){
+
+    .pricefilter{
+        padding-left: 1rem;
+    }
+
+}
+@media (max-width:1008px){
+
+    .searchbar{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding-left: 10rem;
+    }
+
+}
+
+
+@media (max-width:682px){
+
+    .searchbar{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding-left: 5rem;
+
+    }
+
+}
+
+@media (max-width:600px){
+
+    .searchbar{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding-left: 4rem;
+
+    }
+    .searchbar form .box{
+        width: 40rem;
+    }
+}
+
+@media (max-width:545px){
+
+    .searchbar{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding-left: 4rem;
+
+    }
+    .searchbar form .box{
+        width: 35rem;
+    }
+
+    
+}
+
+@media (max-width:500px){
+    .searchbar form .box{
+        width: 30rem;
+    }
+}
+@media (max-width:405px){
+
+    
+    .searchbar form .box{
+        width: 35rem;
+    }
+
+    
 }
