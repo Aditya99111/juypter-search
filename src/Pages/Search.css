@@ -155,10 +155,9 @@
 }
 
 
-
-.maincontent{
-    max-height: 100vh;
-    overflow: auto;
+.btn-container{
+    display: flex;
+    justify-content: center;
 }
 
 .maincontent::-webkit-scrollbar {
