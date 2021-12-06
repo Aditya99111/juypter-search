@@ -10,7 +10,11 @@
     padding-top: 10rem;
 
 }
-
+.cross{
+    font-size: 3rem;
+    color: #000;
+    float: right;
+}
 .searchpage .filters{
     flex: 1 1 18%;
     border-right: 1px solid black;
@@ -255,7 +259,7 @@
 
 .right{
     float: right;
-    padding-right: 8%;
+    padding-right: 3%;
 }
 .popupicons{
     display: flex;

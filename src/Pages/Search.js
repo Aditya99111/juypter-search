@@ -12,7 +12,7 @@ import {
   Legend,
 } from "chart.js";
 import { Line } from "react-chartjs-2";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 ChartJS.register(
   CategoryScale,
@@ -26,6 +26,7 @@ ChartJS.register(
 
 const Search = () => {
   let location = useLocation();
+  let navigate = useNavigate();
   const [searchTerm, setSearchterm] = useState(undefined);
   const [products, setProducts] = useState([]);
   const [visible, setVisible] = useState(10);
@@ -110,18 +111,24 @@ const Search = () => {
                 ) {
                   return val;
                 }
-
               })
               .slice(0, visible)
               .map((val, key) => {
+                console.log(val);
                 return (
                   <div class="box" key={key}>
                     <span class="discount">-10%</span>
                     <div class="image">
-                      <img src="images/img-1.jpg" alt="" />
+                      <img src="/images/img-1.jpg" alt="" />
 
                       <div class="icons">
-                        <a href="#popup2" class="cart-btn">
+                        <a
+                          href="javascript:void(0)"
+                          class="cart-btn"
+                          onClick={() => {
+                            navigate(`/product/${val.id}`);
+                          }}
+                        >
                           view Details
                         </a>
                       </div>
@@ -139,92 +146,10 @@ const Search = () => {
                   </div>
                 );
               })}
-
-            {products.map((value, key) => {
-              return (
-                <div id="popup2" class="overlay light" key={key}>
-                  <a class="cancel" href="#"></a>
-                  <div class="popup">
-                    <div class="content1">
-                      <h1 class="heading">{value.first_name}</h1>
-                      <div className="right">
-                        <div className="popupicons">
-                          <div className="popupprice">
-                            <i class="fas fa-dollar-sign"></i>
-                            <br />
-                            100$
-                          </div>
-                          <div className="popuporder">
-                            <i class="fas fa-shopping-cart"></i>
-                            <br />
-                            100
-                          </div>
-                          <div className="popuprank">
-                            <i class="fas fa-trophy"></i>
-                            <br />
-                            10
-                          </div>
-                        </div>
-                        <div className="graph">
-                          <Line
-                            height={400}
-                            width={400}
-                            data={{
-                              type: "category",
-                              labels: [
-                                "Red",
-                                "Blue",
-                                "Yellow",
-                                "Green",
-                                "Purple",
-                                "Orange",
-                              ],
-                              datasets: [
-                                {
-                                  label: "label",
-                                  data: [22, 33, 30, 44, 22, 33],
-                                  backgroundColor: [
-                                    "rgba(255, 99, 132, 0.2)",
-                                    "rgba(54, 162, 235, 0.2)",
-                                    "rgba(255, 206, 86, 0.2)",
-                                    "rgba(75, 192, 192, 0.2)",
-                                    "rgba(153, 102, 255, 0.2)",
-                                    "rgba(255, 159, 64, 0.2)",
-                                  ],
-                                  borderColor: [
-                                    "rgba(255, 99, 132, 1)",
-                                    "rgba(54, 162, 235, 1)",
-                                    "rgba(255, 206, 86, 1)",
-                                    "rgba(75, 192, 192, 1)",
-                                    "rgba(153, 102, 255, 1)",
-                                    "rgba(255, 159, 64, 1)",
-                                  ],
-                                  borderWidth: 1,
-                                },
-                              ],
-                            }}
-                            options={{
-                              maintainAspectRatio: false,
-                            }}
-                          />
-                        </div>
-                      </div>
-                      <div className="left">
-                        <div className="popupimage">
-                          <img src="images/img-1.jpg" alt="" />
-                        </div>
-                        <button className="btn">view on store</button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              );
-            })}
           </div>
-          <div className="btn-container">
           <button className="btn" onClick={showMore}>
             load more
-          </button></div>
+          </button>
         </section>
       </div>
     </section>
