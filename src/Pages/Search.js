@@ -57,6 +57,14 @@ const Search = () => {
     }
   }
 
+  function handleCategoryChange(e) {
+    var sortedProducts = [...products];
+    sortedProducts = sortedProducts.filter(
+      (product) => product.category === e.target.value
+    );
+    setProducts(sortedProducts);
+  }
+
   if (searchTerm === undefined) return <p>Loading...</p>;
 
   return (
@@ -72,10 +80,14 @@ const Search = () => {
                 setSearchterm(event.target.value);
               }}
             />
-            <select name="categories" id="categories">
+            <select
+              name="categories"
+              id="categories"
+              onChange={handleCategoryChange}
+            >
               <option value="electronices">electronices</option>
               <option value="toys">toys</option>
-              <option value="home">home</option>
+              <option value="Movies">Movies</option>
             </select>
           </form>
         </div>
@@ -114,7 +126,6 @@ const Search = () => {
               })
               .slice(0, visible)
               .map((val, key) => {
-                console.log(val);
                 return (
                   <div class="box" key={key}>
                     <span class="discount">-10%</span>
@@ -133,7 +144,6 @@ const Search = () => {
                         </a>
                       </div>
                     </div>
-
 
                     <div class="content">
                       <h3> {val.first_name} </h3>
