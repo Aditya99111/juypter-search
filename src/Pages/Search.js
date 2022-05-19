@@ -58,11 +58,15 @@ const Search = () => {
   }
 
   function handleCategoryChange(e) {
-    var sortedProducts = [...products];
-    sortedProducts = sortedProducts.filter(
-      (product) => product.category === e.target.value
-    );
-    setProducts(sortedProducts);
+    var sortedProducts = [...JSONDATA];
+    if (e.target.value === "all") {
+      setProducts(sortedProducts);
+    } else {
+      sortedProducts = sortedProducts.filter(
+        (product) => product.category === e.target.value
+      );
+      setProducts(sortedProducts);
+    }
   }
 
   if (searchTerm === undefined) return <p>Loading...</p>;
@@ -85,6 +89,7 @@ const Search = () => {
               id="categories"
               onChange={handleCategoryChange}
             >
+              <option value="all">all</option>
               <option value="electronices">electronices</option>
               <option value="toys">toys</option>
               <option value="Movies">Movies</option>
